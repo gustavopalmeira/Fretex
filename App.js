@@ -79,7 +79,7 @@ class Cadastro extends Component {
         <TextInput 
             style={styles.input}
             valeu={senha}
-            onChangeText={(senha) => setSenha(email)}
+            onChangeText={(senha) => setSenha(senha)}
             placeholder="Senha"
         />
         <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Login')}
@@ -101,18 +101,50 @@ class Perfil extends Component {
     return(
       <View style={styles.body}>
         <Text style={styles.titlePerfil}>Escolha qual perfil deseja utilizar</Text>
-        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Perfil')}
->
+        
+        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Veiculo')}>
         <Text style={styles.buttonText}>Prestador de serviços</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Perfil')}
->
+        
+        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Perfil')}>
         <Text style={styles.buttonText}>Cliente</Text>
         </TouchableOpacity>
       </View>
     );
   }
 }
+class CadastroVeiculo extends Component{
+  render(){
+    return(
+      <View style={styles.body}>
+
+      <Text style={styles.nome}>Tipo do veículo:</Text>
+      <TextInput 
+          style={styles.input}
+          valeu={veiculo}
+          onChangeText={(veiculo) => setVeiculo(veiculo)}
+          placeholder="Exemplo: Veículo Urbano de Carga (VUC)"
+        />
+        <Text style={styles.nome}>Placa do veículo:</Text>
+        <TextInput 
+          style={styles.input}
+          valeu={placa}
+          onChangeText={(placa) => setPlaca(placa)}
+          placeholder="Exemplo: AAA-1234"
+        />
+
+        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Login')}>
+          <Text style={styles.buttonText}>Salvar</Text>
+        </TouchableOpacity>
+        
+      </View>
+    );
+    const [veiculo, setVeiculo] = useState('');
+    const [placa, setPlaca] = useState('');
+  }
+}
+
+
 
 
 /* NAVEGAÇÃO */
@@ -126,6 +158,9 @@ const AppNavigator = createStackNavigator(
       },
       Perfil:{
         screen: Perfil
+      },
+      Veiculo: {
+        screen: CadastroVeiculo
       }
   },
       {
