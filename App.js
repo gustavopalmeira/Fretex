@@ -246,9 +246,13 @@ class Frete extends Component {
             valeu={complementoDestino}
             onChangeText={(complementoDestino) => setComplementoDestino(complementoDestino)}
             placeholder="Complemento"
-          />                       
+          />
+        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Prestador')}>
+          <Text style={styles.buttonText}>Solicitar</Text>
+        </TouchableOpacity>
       </ScrollView>
     );
+    const [carga, setCarga] = useState('');
     const [cep, setCep] = useState('');
     const [cepDestino, setCepDestino] = useState('');
     const [numero, setNumero] = useState('');
@@ -262,7 +266,36 @@ class FretePrestador extends Component {
   render(){
     return(
       <ScrollView style={styles.body}>
-        <Text style={styles.titleFrete}>Solicitações de fretes</Text>
+        <Text style={styles.titleFrete}>Menu</Text>
+        
+        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Solicitações')}>
+          <Text style={styles.buttonText}>Ver Solicitações</Text>
+        </TouchableOpacity>
+      
+        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Negociação')}>
+          <Text style={styles.buttonText}>Negociações</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    );
+  }
+}
+
+class Solicitacao extends Component {
+  render(){
+    return(
+      <ScrollView>
+        <Text style={styles.titleFrete}>Solicitações</Text>
+      </ScrollView>
+    );
+  }
+}
+
+class Negociacao extends Component {
+  render(){
+    return(
+      <ScrollView style={styles.body}>
+        <Text style={styles.titleFrete}>Negociação</Text>
+        
       </ScrollView>
     );
   }
@@ -288,7 +321,13 @@ const AppNavigator = createStackNavigator(
       },
       Prestador: {
         screen: FretePrestador
-      }
+      },
+      Negociação:{
+        screen: Negociacao
+      },
+      Solicitações: {
+        screen: Solicitacao
+      }      
   },
       {
       initialRouteName: 'Login'
